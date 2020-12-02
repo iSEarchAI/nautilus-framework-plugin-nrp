@@ -1,0 +1,2 @@
+# nautilus-plugin-nrp
+ 
