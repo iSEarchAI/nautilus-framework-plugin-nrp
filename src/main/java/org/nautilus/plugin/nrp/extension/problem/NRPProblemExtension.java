@@ -1,6 +1,7 @@
 package org.nautilus.plugin.nrp.extension.problem;
 
 import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,5 +80,25 @@ public class NRPProblemExtension extends AbstractProblemExtension {
         
         return variables;
 	    
+    }
+	
+	@Override
+    public List<Path> getAllInstances() {
+
+        List<Path> allInstances = new ArrayList<>();
+
+        allInstances.add(getInstanceFolder().resolve("r025.txt"));
+        allInstances.add(getInstanceFolder().resolve("r100.txt"));
+        
+        return allInstances;
+    }
+    
+    private Path getInstanceFolder() {
+        
+        return Paths.get("nautilus-plugin-nrp")
+                .resolve("src")
+                .resolve("main")
+                .resolve("resources")
+                .resolve("instances");
     }
 }
