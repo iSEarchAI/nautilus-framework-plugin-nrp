@@ -4,7 +4,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.nautilus.plugin</groupId>
     <artifactId>nautilus-plugin-nrp</artifactId>
-    <version>1.0.0</version>
+    <version>0.0.2</version>
     <name>Nautilus Plugin NRP</name>
     <description>A Next Release Problem plugin for Nautilus Framework</description>
     <properties>
@@ -19,11 +19,6 @@
         <url>http://github.com/thiagodnf</url>
     </organization>
     <dependencies>
-        <dependency>
-            <groupId>com.github.javafaker</groupId>
-            <artifactId>javafaker</artifactId>
-            <version>0.15</version>
-        </dependency>
         <dependency>
             <groupId>org.nautilus</groupId>
             <artifactId>nautilus-core</artifactId>

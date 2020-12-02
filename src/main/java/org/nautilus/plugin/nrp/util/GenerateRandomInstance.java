@@ -6,13 +6,9 @@ import java.util.List;
 import org.nautilus.plugin.nrp.encoding.model.Requirement;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
-import com.github.javafaker.Faker;
-
 public class GenerateRandomInstance {
 	
 	protected static JMetalRandom random = JMetalRandom.getInstance();
-	
-	protected static Faker faker = new Faker();
 	
 	public static String generate(int numberOfRequirements) {
 
