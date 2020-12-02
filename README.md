@@ -20,7 +20,7 @@ Open the pom.xml file at ```nautilus-web``` module (from Nautilus Framework) and
 <dependency>
   <groupId>org.nautilus.plugin</groupId>
   <artifactId>nautilus-plugin-nrp</artifactId>
-  <version>0.0.2</version>
+  <version>LATEST VERSION</version>
 </dependency>
 ```
 
