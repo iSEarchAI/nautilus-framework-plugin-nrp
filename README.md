@@ -33,51 +33,34 @@ addProblemExtension(new NRPProblemExtension());
 Run Nautilus Framework as usual. If everything is working well, when you initiate a new execution, the NRP problem is going to be available as follows:
 
 <kbd>
-  <img src="https://user-images.githubusercontent.com/114015/94708545-bb346580-0312-11eb-99b6-5fba786e071f.png">
+  <img src="https://user-images.githubusercontent.com/114015/100835879-5396b580-343c-11eb-8df4-c0933eddacc8.png">
 </kbd>
 
 ## Objective Functions
 
 This plugin supports the following objective functions
 
-1. Number Of Products
-2. Alive Mutants
-3. Uncovered Pairs
-4. Similarity
-5. Cost
-6. Unselected Features
-7. Unimportant Features
+1. Cost
+2. Importance
+3. Number of Requirements
+4. Number of Tasks
+5. Profit
 
 Please feel free to pull request a new set of objectives.
 
 ## Problem Instances
 
-This plugins makes available the following feature model (problem instances) for your experiments:
+This plugins makes available the following list of requirements (problem instances) for your experiments:
 
-1. **James:** SPL for collaborative web systems [1]
-2. **CAS (Car Audio System):** a SPL to manage automotive sound systems [6]
-3. **WS (Weather Station):** SPL for weather forecast systems [2]
-4. **E-Shop:** an E-commerce SPL [5]
-5. **Drupal:** a modular open source web content management framework [4]
-6. **Smarthome v2.2:** SPL for a smart residential solution [3]
-
-The following table shows information about each feature model:
-
-| Feature Model | # of Products  | Alive Mutants | Valid Pairs | # of Features |
-|------|:---:|:---:|:---:|:---:|
-|		James       |       68            |    106     |    75     |        14 |
-|		CAS         |       450           |    227     |    183    |        21 |
-|		WS          |       504           |    357     |    195    |        22 |
-|		E-Shop      |      1152           |     94     |    202    |        22 |
-|		Drupal      | ~2.09E9     |    2194    |   1081    |        48 |
-|		Smarthome   | ~3.87E9     |    2948    |   1710    |        60 |
+1. **r025**: 25 requirements to be selected (randomly generated)
+2. **r100**: 100 requirements to be selected (randomly generated)
 
 ## Screenshot
 
 The following image shows an execution considering all objective functions
 
 <kbd>
-  <img src="https://user-images.githubusercontent.com/114015/94716124-6695e800-031c-11eb-8d58-2a028b9fd8cb.png">
+  <img src="https://user-images.githubusercontent.com/114015/100836227-ef282600-343c-11eb-863e-d06b7bd43a02.png">
 </kbd>
 
 
@@ -98,5 +81,3 @@ See also the list of [contributors](https://github.com/nautilus-framework/nautil
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-
-## References
