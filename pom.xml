@@ -2,11 +2,14 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.nautilus.plugin</groupId>
-    <artifactId>nautilus-plugin-nrp</artifactId>
+    
+    <groupId>org.nautilus-framework</groupId>
+    <artifactId>nautilus-framework-plugin-nrp</artifactId>
     <version>0.0.2</version>
+    
     <name>Nautilus Plugin NRP</name>
     <description>A Next Release Problem plugin for Nautilus Framework</description>
+    
     <properties>
         <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
@@ -14,19 +17,21 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <sonar.test.exclusions>src/test/**</sonar.test.exclusions>
     </properties>
+    
     <organization>
-        <name>Thiago Ferreira</name>
-        <url>http://github.com/thiagodnf</url>
+        <name>Nautilus Framework</name>
+        <url>https://github.com/nautilus-framework/nautilus-framework</url>
     </organization>
+    
     <dependencies>
         <dependency>
-            <groupId>org.nautilus</groupId>
-            <artifactId>nautilus-core</artifactId>
+            <groupId>org.nautilus-framework</groupId>
+            <artifactId>nautilus-framework-core</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
-            <groupId>org.nautilus</groupId>
-            <artifactId>nautilus-plugin</artifactId>
+            <groupId>org.nautilus-framework</groupId>
+            <artifactId>nautilus-framework-plugin</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
@@ -44,6 +49,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    
     <build>
         <resources>
             <resource>
@@ -129,4 +135,5 @@
             </plugin>
         </plugins>
     </build>
+    
 </project>
