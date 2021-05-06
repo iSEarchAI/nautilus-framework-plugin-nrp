@@ -40,21 +40,21 @@ public class NSGAIIRunner {
 	    SelectionOperator<List<BinarySolution>, BinarySolution> selection = new BinaryTournamentSelection<BinarySolution>(
 	        new RankingAndCrowdingDistanceComparator<BinarySolution>());
 
-	    Algorithm<List<BinarySolution>> algorithm = new NSGAIIBuilder<BinarySolution>(problem, crossover, mutation)
-	        .setSelectionOperator(selection)
-	        .setMaxEvaluations(10000)
-	        .setPopulationSize(100)
-	        .build() ;
+//	    Algorithm<List<BinarySolution>> algorithm = new NSGAIIBuilder<BinarySolution>(problem, crossover, mutation)
+//	        .setSelectionOperator(selection)
+//	        .setMaxEvaluations(10000)
+//	        .setPopulationSize(100)
+//	        .build() ;
 	    
-	    System.out.println("Optimizing...");
-	    
-	    new AlgorithmRunner.Executor(algorithm).execute() ;
-	    
-	    List<BinarySolution> population = algorithm.getResult() ;
-	    
-	    for(BinarySolution solution : population) {
-	    	System.out.println(Arrays.toString(solution.getObjectives()));
-	    }
+//	    System.out.println("Optimizing...");
+//	    
+//	    new AlgorithmRunner.Executor(algorithm).execute() ;
+//	    
+//	    List<BinarySolution> population = algorithm.getResult() ;
+//	    
+//	    for(BinarySolution solution : population) {
+//	    	System.out.println(Arrays.toString(solution.getObjectives()));
+//	    }
 	    
 	    System.out.println("Done");
 	}

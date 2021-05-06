@@ -5,18 +5,18 @@ import org.nautilus.core.objective.AbstractObjective;
 import org.nautilus.plugin.nrp.encoding.instance.TXTInstance;
 import org.uma.jmetal.solution.Solution;
 
-public class NumberOfRequirementsObjective extends AbstractObjective {
+public class Size extends AbstractObjective {
 	
-	protected int numbersOfRequirements;
+	protected int requirements;
 	
 	@Override
 	public void beforeProcess(Instance instanceData, Solution<?> sol) {
-		this.numbersOfRequirements = 0;
+		this.requirements = 0;
 	}
 	
 	@Override
 	public void process(Instance instanceData, Solution<?> sol, int i) {
-		numbersOfRequirements++;
+	    requirements++;
 	}
 	
 	@Override
@@ -24,7 +24,7 @@ public class NumberOfRequirementsObjective extends AbstractObjective {
 		
 		TXTInstance instance = (TXTInstance) instanceData;
 		
-		return (double) numbersOfRequirements / (double) instance.getNumberOfRequirements();
+		return (double) requirements / (double) instance.getNumberOfRequirements();
 	}
 	
 	public boolean isMaximize() {
@@ -33,7 +33,7 @@ public class NumberOfRequirementsObjective extends AbstractObjective {
 	
 	@Override
 	public String getName() {
-		return "Number of Requirements";
+		return "Size";
 	}
 
 	@Override

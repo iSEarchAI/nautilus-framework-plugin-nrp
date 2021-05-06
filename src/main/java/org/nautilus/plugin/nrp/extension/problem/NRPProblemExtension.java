@@ -10,10 +10,10 @@ import org.nautilus.core.model.Instance;
 import org.nautilus.core.objective.AbstractObjective;
 import org.nautilus.plugin.extension.problem.AbstractProblemExtension;
 import org.nautilus.plugin.nrp.encoding.instance.TXTInstance;
-import org.nautilus.plugin.nrp.encoding.objective.CostObjective;
-import org.nautilus.plugin.nrp.encoding.objective.ImportanceObjective;
-import org.nautilus.plugin.nrp.encoding.objective.NumberOfRequirementsObjective;
-import org.nautilus.plugin.nrp.encoding.objective.ProfitObjective;
+import org.nautilus.plugin.nrp.encoding.objective.Cost;
+import org.nautilus.plugin.nrp.encoding.objective.Importance;
+import org.nautilus.plugin.nrp.encoding.objective.Size;
+import org.nautilus.plugin.nrp.encoding.objective.Profit;
 import org.nautilus.plugin.nrp.encoding.objective.NumberOfTasksObjective;
 import org.nautilus.plugin.nrp.encoding.problem.NRPProblem;
 import org.pf4j.Extension;
@@ -45,11 +45,11 @@ public class NRPProblemExtension extends AbstractProblemExtension {
 		
 		List<AbstractObjective> objectives = new ArrayList<>();
 
-		objectives.add(new NumberOfRequirementsObjective());
-		objectives.add(new CostObjective());
-		objectives.add(new ProfitObjective());
-		objectives.add(new ImportanceObjective());
-		objectives.add(new NumberOfTasksObjective());
+		objectives.add(new Size());
+		objectives.add(new Cost());
+		objectives.add(new Profit());
+		objectives.add(new Importance());
+//		objectives.add(new NumberOfTasksObjective());
 
 		return objectives;
 	}

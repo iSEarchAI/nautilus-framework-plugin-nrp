@@ -5,7 +5,7 @@ import org.nautilus.core.objective.AbstractObjective;
 import org.nautilus.plugin.nrp.encoding.instance.TXTInstance;
 import org.uma.jmetal.solution.Solution;
 
-public class CostObjective extends AbstractObjective {
+public class Cost extends AbstractObjective {
 	
 	protected double sum;
 	

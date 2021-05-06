@@ -5,7 +5,7 @@ import org.nautilus.core.objective.AbstractObjective;
 import org.nautilus.plugin.nrp.encoding.instance.TXTInstance;
 import org.uma.jmetal.solution.Solution;
 
-public class ImportanceObjective extends AbstractObjective {
+public class Profit extends AbstractObjective {
 	
 	protected double sum;
 	
@@ -19,7 +19,7 @@ public class ImportanceObjective extends AbstractObjective {
 		
 		TXTInstance instance = (TXTInstance) instanceData;
 		
-		sum += instance.getImportance(i);
+		sum += instance.getProfit(i);
 	}
 	
 	@Override
@@ -27,13 +27,13 @@ public class ImportanceObjective extends AbstractObjective {
 		
 		TXTInstance instance = (TXTInstance) instanceData;
 		
-		return 1.0-(double) sum / (double) instance.getSumOfImportances();
+		return 1.0-(double) sum / (double) instance.getSumOfProfits();
 	}
 	
 //	public boolean isMaximize() {
 //		return true;
 //	}
-//	
+	
 //	public double getMinimumValue() {
 //		return -1.0;
 //	}
@@ -44,7 +44,7 @@ public class ImportanceObjective extends AbstractObjective {
 	
 	@Override
 	public String getName() {
-		return "Importance";
+		return "Profit";
 	}
 
 	@Override
