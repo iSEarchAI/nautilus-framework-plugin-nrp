@@ -1,7 +1,6 @@
 package org.nautilus.plugin.nrp.extension.problem;
 
 import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,17 +11,14 @@ import org.nautilus.plugin.extension.problem.AbstractProblemExtension;
 import org.nautilus.plugin.nrp.encoding.instance.TXTInstance;
 import org.nautilus.plugin.nrp.encoding.objective.Cost;
 import org.nautilus.plugin.nrp.encoding.objective.Importance;
-import org.nautilus.plugin.nrp.encoding.objective.Size;
 import org.nautilus.plugin.nrp.encoding.objective.Profit;
-import org.nautilus.plugin.nrp.encoding.objective.NumberOfTasksObjective;
+import org.nautilus.plugin.nrp.encoding.objective.Size;
 import org.nautilus.plugin.nrp.encoding.problem.NRPProblem;
-import org.pf4j.Extension;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.BinarySolution;
 import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.binarySet.BinarySet;
 
-@Extension
 public class NRPProblemExtension extends AbstractProblemExtension {
 
 	@Override
@@ -49,7 +45,6 @@ public class NRPProblemExtension extends AbstractProblemExtension {
 		objectives.add(new Cost());
 		objectives.add(new Profit());
 		objectives.add(new Importance());
-//		objectives.add(new NumberOfTasksObjective());
 
 		return objectives;
 	}
@@ -62,7 +57,6 @@ public class NRPProblemExtension extends AbstractProblemExtension {
 	@Override
     public List<String> getVariablesAsList(Instance instance, Solution<?> solution) {
        
-	    
 	    TXTInstance data = (TXTInstance) instance;
         
         NBinarySolution sol = (NBinarySolution) solution;
@@ -79,26 +73,5 @@ public class NRPProblemExtension extends AbstractProblemExtension {
         }
         
         return variables;
-	    
-    }
-	
-	@Override
-    public List<Path> getAllInstances() {
-
-        List<Path> allInstances = new ArrayList<>();
-
-        allInstances.add(getInstanceFolder().resolve("r025.txt"));
-        allInstances.add(getInstanceFolder().resolve("r100.txt"));
-        
-        return allInstances;
-    }
-    
-    private Path getInstanceFolder() {
-        
-        return Paths.get("nautilus-plugin-nrp")
-                .resolve("src")
-                .resolve("main")
-                .resolve("resources")
-                .resolve("instances");
     }
 }
