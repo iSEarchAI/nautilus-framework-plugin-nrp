@@ -137,11 +137,10 @@ public class TXTInstance extends Instance {
 
     protected Tab getRequirementsTab(TXTInstance data) {
 
-        TableTabContent table = new TableTabContent(Arrays.asList("Requirement", "Cost", "Profit", "Importance"));
+        TableTabContent table = new TableTabContent(Arrays.asList("Cost", "Profit", "Importance"));
 
         for (int i = 0; i < data.getNumberOfRequirements(); i++) {
             table.getRows().add(Arrays.asList(
-                    "" + i,
                     "" + data.getCost(i),
                     "" + data.getProfit(i),
                     "" + data.getImportance(i)
