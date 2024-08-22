@@ -38,7 +38,7 @@ public class NRPProblemExtension extends AbstractProblemExtension {
 
 	@Override
 	public List<AbstractObjective> getObjectives() {
-		
+
 		List<AbstractObjective> objectives = new ArrayList<>();
 
 		objectives.add(new Size());
@@ -49,29 +49,31 @@ public class NRPProblemExtension extends AbstractProblemExtension {
 		return objectives;
 	}
 
+
+
 	@Override
 	public Instance getInstance(Path path) {
 		return new TXTInstance(path);
 	}
-	
+
 	@Override
     public List<String> getVariablesAsList(Instance instance, Solution<?> solution) {
-       
+
 	    TXTInstance data = (TXTInstance) instance;
-        
+
         NBinarySolution sol = (NBinarySolution) solution;
-        
+
         BinarySet binarySet = sol.getVariableValue(0);
-        
+
         List<String> variables = new ArrayList<>();
-        
+
         for (int i = 0; i < binarySet.getBinarySetLength(); i++) {
 
             if (binarySet.get(i)) {
                 variables.add("Requirement #"+i+": "+data.getRequirement(i));
             }
         }
-        
+
         return variables;
     }
 }
