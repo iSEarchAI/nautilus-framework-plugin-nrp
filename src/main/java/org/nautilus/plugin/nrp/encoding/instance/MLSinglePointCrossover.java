@@ -95,9 +95,9 @@ public class MLSinglePointCrossover implements CrossoverOperator<MLBinarySolutio
             int intoVariableCrossoverPoint = parent1.getVariableValue(variable).getBinarySetLength() - diff;
 
             // 5. Apply the crossover to the variable;
-            BinarySet offspring1, offspring2;
-            offspring1 = (BinarySet) parent1.getVariableValue(variable).clone();
-            offspring2 = (BinarySet) parent2.getVariableValue(variable).clone();
+            MLBinarySet offspring1, offspring2;
+            offspring1 = (MLBinarySet) parent1.getVariableValue(variable).clone();
+            offspring2 = (MLBinarySet) parent2.getVariableValue(variable).clone();
 
             for (int i = intoVariableCrossoverPoint; i < offspring1.getBinarySetLength(); i++) {
                 boolean swap = offspring1.get(i);
@@ -110,8 +110,8 @@ public class MLSinglePointCrossover implements CrossoverOperator<MLBinarySolutio
 
             // 6. Apply the crossover to the other variables
             for (int i = variable + 1; i < parent1.getNumberOfVariables(); i++) {
-                offspring.get(0).setVariableValue(i, (BinarySet) parent2.getVariableValue(i).clone());
-                offspring.get(1).setVariableValue(i, (BinarySet) parent1.getVariableValue(i).clone());
+                offspring.get(0).setVariableValue(i, (MLBinarySet) parent2.getVariableValue(i).clone());
+                offspring.get(1).setVariableValue(i, (MLBinarySet) parent1.getVariableValue(i).clone());
             }
 
         }

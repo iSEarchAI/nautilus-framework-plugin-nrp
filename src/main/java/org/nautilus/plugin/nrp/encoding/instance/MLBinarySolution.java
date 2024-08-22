@@ -1,33 +1,133 @@
 package org.nautilus.plugin.nrp.encoding.instance;
 
 import br.otimizes.isearchai.learning.MLSolution;
-import org.nautilus.core.encoding.solution.NBinarySolution;
-import org.nautilus.plugin.nrp.encoding.model.Requirement;
+import com.google.common.base.Preconditions;
+import com.google.gson.Gson;
+import org.nautilus.core.encoding.NSolution;
+import org.uma.jmetal.solution.BinarySolution;
 import org.uma.jmetal.solution.Solution;
 import org.uma.jmetal.util.binarySet.BinarySet;
+import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 
-public class MLBinarySolution extends NBinarySolution implements MLSolution<Requirement> {
+public class MLBinarySolution extends NSolution<MLBinarySet> implements MLSolution<MLBinarySet> {
     private int userEvaluation;
     private Boolean clusterNoise;
     public Boolean evaluatedByUser;
     private Double clusterId;
 
+    protected List<Integer> bitsPerVariable;
+
     public MLBinarySolution() {
+        super();
+
+        this.bitsPerVariable = new ArrayList<>();
     }
 
-    public MLBinarySolution(NBinarySolution solution) {
-        super(solution);
+    /**
+     * Copy constructor
+     */
+    public MLBinarySolution(MLBinarySolution solution) {
+        super(solution.getNumberOfObjectives(), solution.getNumberOfVariables());
+
+        for (int i = 0; i < solution.getNumberOfObjectives(); i++) {
+            setObjective(i, solution.getObjective(i));
+        }
+
+        for (int i = 0; i < solution.getNumberOfVariables(); i++) {
+            setVariableValue(i, (MLBinarySet) solution.getVariableValue(i).clone());
+        }
+
+        setBitsPerVariable(new ArrayList<>(solution.getBitsPerVariable()));
+        setAttributes(new HashMap<Object, Object>(solution.getAttributes()));
     }
 
+    /**
+     * Constructor
+     *
+     * @param numberOfObjectives The number of objectives
+     * @param numberOfVariables  The number of variables
+     * @param bitsPerVariable
+     */
     public MLBinarySolution(int numberOfObjectives, int numberOfVariables, List<Integer> bitsPerVariable) {
-        super(numberOfObjectives, numberOfVariables, bitsPerVariable);
+        super(numberOfObjectives, numberOfVariables);
+
+        Preconditions.checkNotNull(bitsPerVariable, "The bits per variable should not be null");
+        Preconditions.checkArgument(bitsPerVariable.size() == numberOfVariables, "The bits per variable shound have the same number of variables");
+
+        this.bitsPerVariable = bitsPerVariable;
+
+        initializeBinaryVariables();
     }
 
+    /**
+     * Constructor
+     *
+     * @param numberOfObjectives The number of objectives
+     * @param numberOfVariables  The number of variables
+     * @param bitsForVariables   The number of bits for all variables
+     */
     public MLBinarySolution(int numberOfObjectives, int numberOfVariables, int bitsForVariables) {
-        super(numberOfObjectives, numberOfVariables, bitsForVariables);
+        this(numberOfObjectives, numberOfVariables, Collections.nCopies(numberOfVariables, bitsForVariables));
+    }
+
+    @Override
+    public Solution<MLBinarySet> copy() {
+        return new MLBinarySolution(this);
+    }
+
+    public int getNumberOfBits(int index) {
+        return getVariableValue(index).getBinarySetLength();
+    }
+
+    public int getTotalNumberOfBits() {
+
+        int sum = 0;
+
+        for (int i = 0; i < getNumberOfVariables(); i++) {
+            sum += getNumberOfBits(i);
+        }
+
+        return sum;
+    }
+
+    public List<Integer> getBitsPerVariable() {
+        return bitsPerVariable;
+    }
+
+    public void setBitsPerVariable(List<Integer> bitsPerVariable) {
+        this.bitsPerVariable = bitsPerVariable;
+    }
+
+    protected void initializeBinaryVariables() {
+
+        for (int i = 0; i < getNumberOfVariables(); i++) {
+            setVariableValue(i, createNewBitSet(bitsPerVariable.get(i)));
+        }
+    }
+
+    protected MLBinarySet createNewBitSet(int numberOfBits) {
+
+        MLBinarySet bitSet = new MLBinarySet(numberOfBits);
+
+        for (int i = 0; i < numberOfBits; i++) {
+
+            if (JMetalRandom.getInstance().nextDouble() < 0.5) {
+                bitSet.set(i);
+            } else {
+                bitSet.clear(i);
+            }
+        }
+
+        return bitSet;
+    }
+
+    public String toString() {
+        return new Gson().toJson(this);
     }
 
     @Override
@@ -42,7 +142,7 @@ public class MLBinarySolution extends NBinarySolution implements MLSolution<Requ
 
     @Override
     public void setClusterNoise(Boolean b) {
-        this.clusterNoise = clusterNoise;
+        this.clusterNoise = b;
     }
 
     @Override
@@ -56,7 +156,7 @@ public class MLBinarySolution extends NBinarySolution implements MLSolution<Requ
     }
 
     @Override
-    public List getElements() {
+    public List<MLBinarySet> getElements() {
         return Collections.emptyList();
     }
 
@@ -73,10 +173,5 @@ public class MLBinarySolution extends NBinarySolution implements MLSolution<Requ
     @Override
     public boolean getEvaluatedByUser() {
         return evaluatedByUser != null && evaluatedByUser;
-    }
-
-    @Override
-    public Solution<BinarySet> copy() {
-        return new MLBinarySolution(this);
     }
 }

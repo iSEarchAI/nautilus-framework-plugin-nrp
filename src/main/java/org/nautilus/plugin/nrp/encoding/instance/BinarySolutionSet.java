@@ -8,7 +8,7 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
-public class BinarySolutionSet extends MLSolutionSet<MLBinarySolution, Requirement> {
+public class BinarySolutionSet extends MLSolutionSet<MLBinarySolution, MLBinarySet> {
 
     public BinarySolutionSet() {
     }
@@ -18,19 +18,18 @@ public class BinarySolutionSet extends MLSolutionSet<MLBinarySolution, Requireme
         return this.solutions.stream().map(NSolution::getObjectives).toArray(double[][]::new);
     }
 
-
     @Override
-    public double[] writeObjectivesFromElements(Requirement MLElement, MLBinarySolution MLSolution) {
+    public double[] writeObjectivesFromElements(MLBinarySet MLElement, MLBinarySolution MLSolution) {
         return new double[0];
     }
 
     @Override
-    public double[] writeCharacteristicsFromElement(Requirement MLElement, MLBinarySolution MLSolution) {
+    public double[] writeCharacteristicsFromElement(MLBinarySet MLElement, MLBinarySolution MLSolution) {
         return new double[0];
     }
 
     @Override
-    public List<Requirement> getAllElementsFromSolution(MLBinarySolution MLSolution) {
+    public List<MLBinarySet> getAllElementsFromSolution(MLBinarySolution MLSolution) {
         return Collections.emptyList();
     }
 

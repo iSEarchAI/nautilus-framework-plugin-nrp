@@ -1,7 +1,6 @@
 package org.nautilus.plugin.nrp.encoding.instance;
 
 import org.uma.jmetal.operator.MutationOperator;
-import org.uma.jmetal.solution.BinarySolution;
 import org.uma.jmetal.util.JMetalException;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
 import org.uma.jmetal.util.pseudorandom.RandomGenerator;
@@ -57,7 +56,7 @@ public class MLBitFilpMutation implements MutationOperator<MLBinarySolution> {
      * @param probability Mutation setProbability
      * @param solution    The solution to mutate
      */
-    public void doMutation(double probability, BinarySolution solution) {
+    public void doMutation(double probability, MLBinarySolution solution) {
         for (int i = 0; i < solution.getNumberOfVariables(); i++) {
             for (int j = 0; j < solution.getVariableValue(i).getBinarySetLength(); j++) {
                 if (randomGenerator.getRandomValue() <= probability) {

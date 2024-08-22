@@ -3,8 +3,6 @@ package org.nautilus.plugin.nrp.encoding.instance;
 import org.nautilus.core.encoding.NProblem;
 import org.nautilus.core.model.Instance;
 import org.nautilus.core.objective.AbstractObjective;
-import org.uma.jmetal.problem.BinaryProblem;
-import org.uma.jmetal.solution.BinarySolution;
 import org.uma.jmetal.util.binarySet.BinarySet;
 
 import java.util.List;

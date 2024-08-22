@@ -1,13 +1,12 @@
 package org.nautilus.plugin.nrp.encoding.runner;
 
 import br.otimizes.isearchai.interactive.InteractiveConfig;
+import br.otimizes.isearchai.learning.MLSolutionSet;
 import br.otimizes.isearchai.learning.impl.MLNSGAIIBuilder;
 import org.nautilus.core.model.Instance;
 import org.nautilus.core.objective.AbstractObjective;
-import org.nautilus.plugin.nrp.encoding.instance.MLBinarySolution;
-import org.nautilus.plugin.nrp.encoding.instance.MLBitFilpMutation;
-import org.nautilus.plugin.nrp.encoding.instance.MLSinglePointCrossover;
-import org.nautilus.plugin.nrp.encoding.instance.BinarySolutionSet;
+import org.nautilus.plugin.nrp.encoding.instance.*;
+import org.nautilus.plugin.nrp.encoding.model.Requirement;
 import org.nautilus.plugin.nrp.encoding.problem.NRPProblem;
 import org.nautilus.plugin.nrp.extension.problem.NRPProblemExtension;
 import org.uma.jmetal.algorithm.Algorithm;
@@ -46,9 +45,20 @@ public class NSGAIIRunner {
         SelectionOperator<List<MLBinarySolution>, MLBinarySolution> selection = new BinaryTournamentSelection<MLBinarySolution>(
             new RankingAndCrowdingDistanceComparator<MLBinarySolution>());
 
+
         Algorithm<List<MLBinarySolution>> algorithm = new MLNSGAIIBuilder<MLBinarySolution>(problem, crossover, mutation,
             100, new InteractiveConfig().setInteractiveFunction(solutionSet -> {
-            return solutionSet;
+            MLSolutionSet<MLBinarySolution, MLBinarySet> solutions = solutionSet;
+            for (MLBinarySolution solution : solutions) {
+                if (solution.getObjective(0) < .2) {
+                    solution.setEvaluation(4);
+                } else if (solution.getObjective(1) < .4) {
+                    solution.setEvaluation(3);
+                } else {
+                    solution.setEvaluation(2);
+                }
+            }
+            return solutions;
         }).setFirstInteraction(3).setIntervalInteraction(3).setMaxInteractions(3),
             new BinarySolutionSet()
         )
