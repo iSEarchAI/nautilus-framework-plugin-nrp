@@ -1,9 +1,9 @@
 package org.nautilus.plugin.nrp.encoding.problem;
 
+import br.otimizes.isearchai.learning.nautilus.MLBinaryProblem;
+import br.otimizes.isearchai.learning.nautilus.MLBinarySolution;
 import org.nautilus.core.model.Instance;
 import org.nautilus.core.objective.AbstractObjective;
-import org.nautilus.plugin.nrp.encoding.instance.MLBinaryProblem;
-import org.nautilus.plugin.nrp.encoding.instance.MLBinarySolution;
 import org.nautilus.plugin.nrp.encoding.instance.TXTInstance;
 import org.uma.jmetal.util.binarySet.BinarySet;
 import org.uma.jmetal.util.pseudorandom.JMetalRandom;
@@ -13,21 +13,21 @@ import java.util.List;
 
 public class NRPProblem extends MLBinaryProblem {
 
-	private static final long serialVersionUID = 1233594822179588853L;
+    private static final long serialVersionUID = 1233594822179588853L;
 
-	public NRPProblem(Instance instance, List<AbstractObjective> objectives) {
-		super(instance, objectives);
+    public NRPProblem(Instance instance, List<AbstractObjective> objectives) {
+        super(instance, objectives);
 
-		setNumberOfVariables(1);
+        setNumberOfVariables(1);
 
-		List<Integer> bitsPerVariable = new ArrayList<>(getNumberOfVariables());
+        List<Integer> bitsPerVariable = new ArrayList<>(getNumberOfVariables());
 
-		for (int i = 0; i < getNumberOfVariables(); i++) {
-			bitsPerVariable.add(((TXTInstance) getInstance()).getNumberOfRequirements());
-		}
+        for (int i = 0; i < getNumberOfVariables(); i++) {
+            bitsPerVariable.add(((TXTInstance) getInstance()).getNumberOfRequirements());
+        }
 
-		setBitsPerVariable(bitsPerVariable);
-	}
+        setBitsPerVariable(bitsPerVariable);
+    }
 
     @Override
     public void evaluate(MLBinarySolution solution) {

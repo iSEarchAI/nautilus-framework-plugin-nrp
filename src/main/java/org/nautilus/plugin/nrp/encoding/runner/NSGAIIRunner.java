@@ -3,24 +3,19 @@ package org.nautilus.plugin.nrp.encoding.runner;
 import br.otimizes.isearchai.interactive.InteractiveConfig;
 import br.otimizes.isearchai.learning.MLSolutionSet;
 import br.otimizes.isearchai.learning.impl.MLNSGAIIBuilder;
+import br.otimizes.isearchai.learning.nautilus.*;
 import org.nautilus.core.model.Instance;
 import org.nautilus.core.objective.AbstractObjective;
-import org.nautilus.plugin.nrp.encoding.instance.*;
-import org.nautilus.plugin.nrp.encoding.model.Requirement;
 import org.nautilus.plugin.nrp.encoding.problem.NRPProblem;
 import org.nautilus.plugin.nrp.extension.problem.NRPProblemExtension;
 import org.uma.jmetal.algorithm.Algorithm;
-import org.uma.jmetal.algorithm.multiobjective.nsgaii.NSGAII;
 import org.uma.jmetal.operator.CrossoverOperator;
 import org.uma.jmetal.operator.MutationOperator;
 import org.uma.jmetal.operator.SelectionOperator;
-import org.uma.jmetal.operator.impl.crossover.SinglePointCrossover;
-import org.uma.jmetal.operator.impl.mutation.BitFlipMutation;
 import org.uma.jmetal.operator.impl.selection.BinaryTournamentSelection;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.util.AlgorithmRunner;
 import org.uma.jmetal.util.comparator.RankingAndCrowdingDistanceComparator;
-import org.uma.jmetal.util.evaluator.impl.SequentialSolutionListEvaluator;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -59,24 +54,10 @@ public class NSGAIIRunner {
                 }
             }
             return solutions;
-        }).setFirstInteraction(3).setIntervalInteraction(3).setMaxInteractions(3),
-            new BinarySolutionSet()
-        )
+        }).setFirstInteraction(3).setIntervalInteraction(3).setMaxInteractions(3), new MLBinarySolutionSet())
             .setSelectionOperator(selection)
             .setMaxEvaluations(10000)
             .build();
-
-        new NSGAII<>(
-            problem,
-            20000, // max evaluations
-            100, // population size
-            100, // mating pool size
-            100, // offspring size
-            new SinglePointCrossover(0.9),
-            new BitFlipMutation(0.01),
-            new BinaryTournamentSelection<>(),
-            new SequentialSolutionListEvaluator<>()
-        );
 
         System.out.println("Optimizing...");
 
