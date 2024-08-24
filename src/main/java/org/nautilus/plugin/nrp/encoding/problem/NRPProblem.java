@@ -1,7 +1,7 @@
 package org.nautilus.plugin.nrp.encoding.problem;
 
-import br.otimizes.isearchai.learning.nautilus.MLBinaryProblem;
-import br.otimizes.isearchai.learning.nautilus.MLBinarySolution;
+import br.otimizes.isearchai.learning.encoding.binary.MLBinaryProblem;
+import br.otimizes.isearchai.learning.encoding.binary.MLBinarySolution;
 import org.nautilus.core.model.Instance;
 import org.nautilus.core.objective.AbstractObjective;
 import org.nautilus.plugin.nrp.encoding.instance.TXTInstance;
