@@ -10,10 +10,10 @@ public class Requirement {
 
     protected static JMetalRandom random = JMetalRandom.getInstance();
 
-    public List<Task> tasks;
+    public List<Task> items;
 
     public Requirement(List<Task> tasks) {
-        this.tasks = tasks;
+        this.items = tasks;
     }
 
     public static Requirement getRandom() {
@@ -33,7 +33,7 @@ public class Requirement {
 
         double sum = 0.0;
 
-        for (Task task : tasks) {
+        for (Task task : items) {
             sum += task.cost;
         }
 
@@ -44,7 +44,7 @@ public class Requirement {
 
         double sum = 0.0;
 
-        for (Task task : tasks) {
+        for (Task task : items) {
             sum += task.profit;
         }
 
@@ -55,7 +55,7 @@ public class Requirement {
 
         double sum = 0.0;
 
-        for (Task task : tasks) {
+        for (Task task : items) {
             sum += task.importance;
         }
 

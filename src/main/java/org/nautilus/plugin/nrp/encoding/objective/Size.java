@@ -6,31 +6,31 @@ import org.nautilus.plugin.nrp.encoding.instance.TXTInstance;
 import org.uma.jmetal.solution.Solution;
 
 public class Size extends AbstractObjective {
-	
+
 	protected int requirements;
-	
+
 	@Override
 	public void beforeProcess(Instance instanceData, Solution<?> sol) {
 		this.requirements = 0;
 	}
-	
+
 	@Override
 	public void process(Instance instanceData, Solution<?> sol, int i) {
 	    requirements++;
 	}
-	
+
 	@Override
 	public double calculate(Instance instanceData, Solution<?> sol) {
-		
+
 		TXTInstance instance = (TXTInstance) instanceData;
-		
-		return (double) requirements / (double) instance.getNumberOfRequirements();
+
+		return (double) requirements / (double) instance.getSumOfSolution();
 	}
-	
+
 	public boolean isMaximize() {
 		return false;
 	}
-	
+
 	@Override
 	public String getName() {
 		return "Size";

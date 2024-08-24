@@ -41,10 +41,10 @@ public class NRPProblemExtension extends AbstractProblemExtension {
 
 		List<AbstractObjective> objectives = new ArrayList<>();
 
-		objectives.add(new Size());
 		objectives.add(new Cost());
-		objectives.add(new Profit());
 		objectives.add(new Importance());
+		objectives.add(new Profit());
+		objectives.add(new Size());
 
 		return objectives;
 	}
@@ -70,7 +70,7 @@ public class NRPProblemExtension extends AbstractProblemExtension {
         for (int i = 0; i < binarySet.getBinarySetLength(); i++) {
 
             if (binarySet.get(i)) {
-                variables.add("Requirement #"+i+": "+data.getRequirement(i));
+                variables.add("Requirement #"+i+": "+data.getSolution(i));
             }
         }
 

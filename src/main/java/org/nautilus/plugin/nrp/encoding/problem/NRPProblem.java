@@ -23,7 +23,7 @@ public class NRPProblem extends MLBinaryProblem {
         List<Integer> bitsPerVariable = new ArrayList<>(getNumberOfVariables());
 
         for (int i = 0; i < getNumberOfVariables(); i++) {
-            bitsPerVariable.add(((TXTInstance) getInstance()).getNumberOfRequirements());
+            bitsPerVariable.add(((TXTInstance) getInstance()).getSumOfSolution());
         }
 
         setBitsPerVariable(bitsPerVariable);
