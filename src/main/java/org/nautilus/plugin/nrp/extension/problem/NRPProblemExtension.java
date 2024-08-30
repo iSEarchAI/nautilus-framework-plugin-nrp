@@ -13,7 +13,7 @@ import org.nautilus.plugin.nrp.encoding.objective.Cost;
 import org.nautilus.plugin.nrp.encoding.objective.Importance;
 import org.nautilus.plugin.nrp.encoding.objective.Profit;
 import org.nautilus.plugin.nrp.encoding.objective.Size;
-import org.nautilus.plugin.nrp.encoding.problem.NRPProblem;
+import org.nautilus.plugin.nrp.encoding.problem.BinaryNRPProblem;
 import org.uma.jmetal.problem.Problem;
 import org.uma.jmetal.solution.BinarySolution;
 import org.uma.jmetal.solution.Solution;
@@ -23,7 +23,7 @@ public class NRPProblemExtension extends AbstractProblemExtension {
 
 	@Override
 	public Problem<?> getProblem(Instance data, List<AbstractObjective> objectives) {
-		return new NRPProblem(data, objectives);
+		return new BinaryNRPProblem(data, objectives);
 	}
 
 	@Override
